@@ -1,0 +1,816 @@
+{
+  "type": "object",
+  "required": [
+    "eventID",
+    "dist",
+    "userReport",
+    "previousEventID",
+    "message",
+    "id",
+    "size",
+    "errors",
+    "platform",
+    "nextEventID",
+    "type",
+    "metadata",
+    "tags",
+    "dateCreated",
+    "dateReceived",
+    "user",
+    "entries",
+    "packages",
+    "sdk",
+    "_meta",
+    "contexts",
+    "fingerprints",
+    "context",
+    "release",
+    "groupID",
+    "title"
+  ],
+  "properties": {
+    "eventID": {
+      "type": "string"
+    },
+    "dist": {
+      "type": "string",
+      "nullable": true
+    },
+    "userReport": {
+      "type": "object",
+      "nullable": true
+    },
+    "previousEventID": {
+      "type": "string",
+      "nullable": true
+    },
+    "message": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "size": {
+      "type": "integer"
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "platform": {
+      "type": "string"
+    },
+    "nextEventID": {
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string"
+    },
+    "metadata": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "value"
+          ],
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "title"
+          ],
+          "properties": {
+            "title": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          },
+          "_meta": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      }
+    },
+    "dateCreated": {
+      "type": "string"
+    },
+    "dateReceived": {
+      "type": "string"
+    },
+    "user": {
+      "type": "object",
+      "nullable": true,
+      "required": [
+        "username",
+        "name",
+        "ip_address",
+        "email",
+        "data",
+        "id"
+      ],
+      "properties": {
+        "username": {
+          "type": "string",
+          "nullable": true
+        },
+        "name": {
+          "type": "string",
+          "nullable": true
+        },
+        "ip_address": {
+          "type": "string",
+          "nullable": true
+        },
+        "email": {
+          "type": "string",
+          "nullable": true
+        },
+        "data": {
+          "type": "object",
+          "nullable": true,
+          "properties": {
+            "isStaff": {
+              "type": "boolean"
+            }
+          }
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "data"
+            ],
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "data": {
+                "type": "object",
+                "required": [
+                  "values"
+                ],
+                "properties": {
+                  "values": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "category",
+                        "level",
+                        "event_id",
+                        "timestamp",
+                        "data",
+                        "message",
+                        "type"
+                      ],
+                      "properties": {
+                        "category": {
+                          "type": "string"
+                        },
+                        "level": {
+                          "type": "string"
+                        },
+                        "event_id": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "timestamp": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "data": {
+                          "type": "object",
+                          "nullable": true
+                        },
+                        "message": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "type": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "data"
+            ],
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "data": {
+                "type": "object",
+                "required": [
+                  "fragment",
+                  "cookies",
+                  "inferredContentType",
+                  "env",
+                  "headers",
+                  "url",
+                  "query",
+                  "data",
+                  "method"
+                ],
+                "properties": {
+                  "fragment": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "cookies": {
+                    "type": "array",
+                    "nullable": true,
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "inferredContentType": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "env": {
+                    "type": "object",
+                    "nullable": true,
+                    "properties": {
+                      "ENV": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "headers": {
+                    "type": "array",
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "url": {
+                    "type": "string"
+                  },
+                  "query": {
+                    "type": "array",
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "data": {
+                    "type": "object",
+                    "nullable": true
+                  },
+                  "method": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "data"
+            ],
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "data": {
+                "type": "object",
+                "required": [
+                  "formatted"
+                ],
+                "properties": {
+                  "formatted": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "data"
+            ],
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "data": {
+                "type": "object",
+                "required": [
+                  "excOmitted",
+                  "hasSystemFrames",
+                  "values"
+                ],
+                "properties": {
+                  "excOmitted": {
+                    "type": "array",
+                    "nullable": true,
+                    "items": {
+                      "type": "integer"
+                    }
+                  },
+                  "hasSystemFrames": {
+                    "type": "boolean"
+                  },
+                  "values": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "stacktrace",
+                        "module",
+                        "rawStacktrace",
+                        "mechanism",
+                        "threadId",
+                        "value",
+                        "type"
+                      ],
+                      "properties": {
+                        "stacktrace": {
+                          "type": "object",
+                          "nullable": true,
+                          "required": [
+                            "frames",
+                            "framesOmitted",
+                            "registers",
+                            "hasSystemFrames"
+                          ],
+                          "properties": {
+                            "frames": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "required": [
+                                  "function",
+                                  "errors",
+                                  "colNo",
+                                  "vars",
+                                  "package",
+                                  "absPath",
+                                  "inApp",
+                                  "lineNo",
+                                  "module",
+                                  "filename",
+                                  "platform",
+                                  "instructionAddr",
+                                  "context",
+                                  "symbolAddr",
+                                  "trust",
+                                  "symbol"
+                                ],
+                                "properties": {
+                                  "function": {
+                                    "type": "string"
+                                  },
+                                  "errors": {
+                                    "type": "string",
+                                    "nullable": true
+                                  },
+                                  "colNo": {
+                                    "type": "integer",
+                                    "nullable": true
+                                  },
+                                  "vars": {
+                                    "type": "object",
+                                    "nullable": true
+                                  },
+                                  "package": {
+                                    "type": "string",
+                                    "nullable": true
+                                  },
+                                  "absPath": {
+                                    "type": "string",
+                                    "nullable": true
+                                  },
+                                  "inApp": {
+                                    "type": "boolean"
+                                  },
+                                  "lineNo": {
+                                    "type": "integer"
+                                  },
+                                  "module": {
+                                    "type": "string"
+                                  },
+                                  "filename": {
+                                    "type": "string"
+                                  },
+                                  "platform": {
+                                    "type": "string",
+                                    "nullable": true
+                                  },
+                                  "instructionAddr": {
+                                    "type": "string",
+                                    "nullable": true
+                                  },
+                                  "context": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "array",
+                                      "items": {
+                                        "oneOf": [
+                                          {
+                                            "type": "integer"
+                                          },
+                                          {
+                                            "type": "string"
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  "symbolAddr": {
+                                    "type": "string",
+                                    "nullable": true
+                                  },
+                                  "trust": {
+                                    "type": "string",
+                                    "nullable": true
+                                  },
+                                  "symbol": {
+                                    "type": "string",
+                                    "nullable": true
+                                  }
+                                }
+                              }
+                            },
+                            "framesOmitted": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "registers": {
+                              "type": "string",
+                              "nullable": true
+                            },
+                            "hasSystemFrames": {
+                              "type": "boolean"
+                            }
+                          }
+                        },
+                        "module": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "rawStacktrace": {
+                          "type": "object",
+                          "nullable": true
+                        },
+                        "mechanism": {
+                          "type": "object",
+                          "nullable": true,
+                          "properties": {
+                            "type": {
+                              "type": "string"
+                            },
+                            "handled": {
+                              "type": "boolean"
+                            }
+                          }
+                        },
+                        "threadId": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "value": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "packages": {
+      "type": "object"
+    },
+    "sdk": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "_meta": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "type": "string",
+          "nullable": true
+        },
+        "context": {
+          "type": "string",
+          "nullable": true
+        },
+        "entries": {
+          "type": "object"
+        },
+        "contexts": {
+          "type": "string",
+          "nullable": true
+        },
+        "message": {
+          "type": "string",
+          "nullable": true
+        },
+        "packages": {
+          "type": "string",
+          "nullable": true
+        },
+        "tags": {
+          "type": "object"
+        },
+        "sdk": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    },
+    "contexts": {
+      "type": "object"
+    },
+    "fingerprints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "context": {
+      "type": "object"
+    },
+    "release": {
+      "type": "object",
+      "nullable": true,
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "authors",
+            "commitCount",
+            "data",
+            "dateCreated",
+            "dateReleased",
+            "deployCount",
+            "firstEvent",
+            "lastCommit",
+            "lastDeploy",
+            "lastEvent",
+            "newGroups",
+            "owner",
+            "projects",
+            "ref",
+            "shortVersion",
+            "version",
+            "url"
+          ],
+          "properties": {
+            "authors": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            },
+            "commitCount": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "data": {
+              "type": "object"
+            },
+            "dateCreated": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "dateReleased": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "deployCount": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "firstEvent": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "lastCommit": {
+              "type": "object",
+              "nullable": true
+            },
+            "lastDeploy": {
+              "type": "object",
+              "nullable": true,
+              "oneOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "environment",
+                    "name",
+                    "dateStarted",
+                    "dateFinished",
+                    "url",
+                    "id"
+                  ],
+                  "properties": {
+                    "environment": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "dateStarted": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true
+                    },
+                    "dateFinished": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "url": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "id": {
+                      "type": "string"
+                    }
+                  }
+                },
+                {
+                  "nullable": true,
+                  "not": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "object"
+                      },
+                      {
+                        "type": "array",
+                        "items": {}
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "lastEvent": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "newGroups": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "owner": {
+              "type": "object",
+              "nullable": true
+            },
+            "projects": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "slug": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "ref": {
+              "type": "string",
+              "nullable": true
+            },
+            "shortVersion": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        },
+        {
+          "nullable": true,
+          "not": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "object"
+              },
+              {
+                "type": "array",
+                "items": {}
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "groupID": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}

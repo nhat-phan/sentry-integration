@@ -1,0 +1,43 @@
+<idea-plugin>
+    <id>net.ntworld.nhat-phan.sentry-integration</id>
+    <name>Sentry Integration</name>
+    <vendor>ntworld</vendor>
+    <version>1.0.203</version>
+    <product-descriptor code="PSENTRYINTEG" release-date="20210101" release-version="1"/>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.vcs</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService
+                serviceInterface="net.ntworld.sentryIntegrationIdea.serviceProvider.ApplicationServiceProvider"
+                serviceImplementation="net.ntworld.sentryIntegrationIdea.serviceProvider.ApplicationServiceProviderImpl"
+        />
+        <projectService
+                serviceInterface="net.ntworld.sentryIntegrationIdea.serviceProvider.ProjectServiceProvider"
+                serviceImplementation="net.ntworld.sentryIntegrationIdea.serviceProvider.ProjectServiceProviderImpl"
+        />
+        <projectConfigurable
+                id="sentry-integration"
+                displayName="Sentry Integration"
+                instance="net.ntworld.sentryIntegrationIdea.serviceProvider.PluginConfigurable"
+        />
+
+        <notificationGroup displayType="TOOL_WINDOW"
+                           id="sentry.integration.toolWindow"
+                           toolWindowId="Sentry Integration" />
+
+        <toolWindow id="Sentry Integration"
+                    secondary="false"
+                    anchor="bottom"
+                    icon="/icons/main-tool-window-default.svg"
+                    canCloseContents="true"
+                    factoryClass="net.ntworld.sentryIntegrationIdea.toolWindow.MainToolWindowFactory"/>
+
+    </extensions>
+
+    <actions>
+
+    </actions>
+</idea-plugin>

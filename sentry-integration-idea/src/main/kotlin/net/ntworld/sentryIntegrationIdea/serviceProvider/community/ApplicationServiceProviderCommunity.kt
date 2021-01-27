@@ -1,0 +1,5 @@
+package net.ntworld.sentryIntegrationIdea.serviceProvider.community
+
+import net.ntworld.sentryIntegrationIdea.serviceProvider.ApplicationServiceProvider
+
+interface ApplicationServiceProviderCommunity : ApplicationServiceProvider

@@ -1,0 +1,764 @@
+{
+  "id": "",
+  "groupID": "",
+  "eventID": "",
+  "projectID": "",
+  "size": 0,
+  "entries": [
+    {
+      "data": {
+        "values": [
+          {
+            "type": "Exception",
+            "value": "",
+            "mechanism": null,
+            "threadId": null,
+            "module": null,
+            "stacktrace": {
+              "frames": [
+                {
+                  "filename": "",
+                  "absPath": "",
+                  "module": null,
+                  "package": null,
+                  "platform": null,
+                  "instructionAddr": null,
+                  "symbolAddr": null,
+                  "function": null,
+                  "rawFunction": null,
+                  "symbol": null,
+                  "context": [
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ]
+                  ],
+                  "lineNo": 0,
+                  "colNo": null,
+                  "inApp": false,
+                  "trust": null,
+                  "errors": null,
+                  "vars": null
+                },
+                {
+                  "filename": "",
+                  "absPath": "",
+                  "module": null,
+                  "package": null,
+                  "platform": null,
+                  "instructionAddr": null,
+                  "symbolAddr": null,
+                  "function": "",
+                  "rawFunction": null,
+                  "symbol": null,
+                  "context": [
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ]
+                  ],
+                  "lineNo": 0,
+                  "colNo": null,
+                  "inApp": false,
+                  "trust": null,
+                  "errors": null,
+                  "vars": {
+                    "request": ""
+                  }
+                },
+                {
+                  "filename": "",
+                  "absPath": "",
+                  "module": null,
+                  "package": null,
+                  "platform": null,
+                  "instructionAddr": null,
+                  "symbolAddr": null,
+                  "function": "",
+                  "rawFunction": null,
+                  "symbol": null,
+                  "context": [
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ],
+                    [
+                      0,
+                      ""
+                    ]
+                  ],
+                  "lineNo": 0,
+                  "colNo": null,
+                  "inApp": false,
+                  "trust": null,
+                  "errors": null,
+                  "vars": {
+                    "request": ""
+                  }
+                }
+              ],
+              "framesOmitted": null,
+              "registers": null,
+              "hasSystemFrames": false
+            },
+            "rawStacktrace": null
+          }
+        ],
+        "hasSystemFrames": false,
+        "excOmitted": null
+      },
+      "type": "exception"
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "type": "",
+            "timestamp": "",
+            "level": "",
+            "message": "",
+            "category": "",
+            "data": {
+              "code": 0,
+              "file": "",
+              "line": 0
+            },
+            "event_id": null
+          },
+          {
+            "type": "",
+            "timestamp": "",
+            "level": "",
+            "message": "",
+            "category": "",
+            "data": {
+              "code": 0,
+              "file": "",
+              "line": 0
+            },
+            "event_id": null
+          },
+
+        ]
+      },
+      "type": "breadcrumbs"
+    },
+    {
+      "data": {
+        "method": "",
+        "url": "",
+        "query": [],
+        "fragment": null,
+        "data": null,
+        "headers": [
+          [
+            "",
+            ""
+          ],
+          [
+            "",
+            ""
+          ]
+        ],
+        "cookies": [
+          [
+            "",
+            ""
+          ],
+          [
+            "",
+            ""
+          ]
+        ],
+        "env": null,
+        "inferredContentType": ""
+      },
+      "type": "request"
+    }
+  ],
+  "dist": null,
+  "message": "",
+  "title": "",
+  "location": "",
+  "user": null,
+  "contexts": {
+    "browser": {
+      "name": "",
+      "version": "",
+      "type": ""
+    },
+    "client_os": {
+      "name": "",
+      "version": "",
+      "type": ""
+    },
+    "device": {
+      "family": "",
+      "model": "",
+      "brand": "",
+      "type": ""
+    }
+  },
+  "sdk": {
+    "name": "",
+    "version": ""
+  },
+  "context": {
+    "hostname": "",
+    "route": "",
+    "user_id": 0
+  },
+  "packages": {},
+  "type": "",
+  "metadata": {
+    "filename": "",
+    "function": "",
+    "type": "",
+    "value": ""
+  },
+  "tags": [
+    {
+      "key": "",
+      "value": ""
+    },
+    {
+      "key": "",
+      "value": ""
+    },
+    {
+      "key": "",
+      "value": ""
+    },
+    {
+      "key": "",
+      "value": ""
+    },
+    {
+      "key": "",
+      "value": ""
+    },
+    {
+      "key": "",
+      "value": ""
+    },
+    {
+      "key": "",
+      "value": ""
+    },
+    {
+      "key": "",
+      "value": ""
+    },
+    {
+      "key": "",
+      "value": ""
+    },
+    {
+      "key": "",
+      "value": ""
+    },
+    {
+      "key": "",
+      "value": ""
+    },
+    {
+      "key": "",
+      "value": ""
+    },
+    {
+      "key": "",
+      "value": ""
+    },
+    {
+      "key": "",
+      "value": ""
+    },
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "platform": "",
+  "dateReceived": "",
+  "errors": [],
+  "_meta": {
+    "entries": {
+      "0": {
+        "data": {
+          "values": {
+            "0": {
+              "": null,
+              "type": null,
+              "value": null,
+              "mechanism": null,
+              "threadId": null,
+              "module": null,
+              "stacktrace": {
+                "": null,
+                "frames": {},
+                "framesOmitted": null,
+                "registers": null
+              }
+            }
+          }
+        }
+      },
+      "1": {
+        "data": {
+          "values": {
+            "0": {
+              "message": {
+                "": {
+                  "rem": [
+                    [
+                      "",
+                      "",
+                      0,
+                      0
+                    ]
+                  ],
+                  "len": 0,
+                  "chunks": [
+                    {
+                      "type": "",
+                      "text": "",
+                      "rule_id": "",
+                      "remark": ""
+                    }
+                  ]
+                }
+              }
+            },
+            "1": {
+              "message": {
+                "": {
+                  "rem": [
+                    [
+                      "",
+                      "",
+                      0,
+                      0
+                    ]
+                  ],
+                  "len": 0,
+                  "chunks": [
+                    {
+                      "type": "",
+                      "text": "",
+                      "rule_id": "",
+                      "remark": ""
+                    }
+                  ]
+                }
+              }
+            },
+            "2": {
+              "message": {
+                "": {
+                  "rem": [
+                    [
+                      "",
+                      "",
+                      0,
+                      0
+                    ]
+                  ],
+                  "len": 0,
+                  "chunks": [
+                    {
+                      "type": "",
+                      "text": "",
+                      "rule_id": "",
+                      "remark": ""
+                    }
+                  ]
+                }
+              }
+            },
+            "3": {
+              "message": {
+                "": {
+                  "rem": [
+                    [
+                      "",
+                      "",
+                      0,
+                      0
+                    ]
+                  ],
+                  "len": 0,
+                  "chunks": [
+                    {
+                      "type": "",
+                      "text": "",
+                      "rule_id": "",
+                      "remark": ""
+                    }
+                  ]
+                }
+              }
+            },
+            "4": {
+              "message": {
+                "": {
+                  "rem": [
+                    [
+                      "",
+                      "",
+                      0,
+                      0
+                    ]
+                  ],
+                  "len": 0,
+                  "chunks": [
+                    {
+                      "type": "",
+                      "text": "",
+                      "rule_id": "",
+                      "remark": ""
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "2": {
+        "data": {
+          "": null,
+          "method": null,
+          "url": null,
+          "query": null,
+          "data": null,
+          "headers": {
+            "0": {
+              "1": {
+                "1": {
+                  "": {
+                    "rem": [
+                      [
+                        "",
+                        "",
+                        0,
+                        0
+                      ]
+                    ],
+                    "len": 0
+                  }
+                }
+              }
+            },
+            "1": {
+              "1": {
+                "1": {
+                  "": {
+                    "rem": [
+                      [
+                        "",
+                        "",
+                        0,
+                        0
+                      ]
+                    ],
+                    "len": 0
+                  }
+                }
+              }
+            },
+            "2": {
+              "1": {
+                "1": {
+                  "": {
+                    "rem": [
+                      [
+                        "",
+                        "",
+                        0,
+                        0
+                      ]
+                    ],
+                    "len": 0
+                  }
+                }
+              }
+            },
+            "3": {
+              "1": {
+                "1": {
+                  "": {
+                    "rem": [
+                      [
+                        "",
+                        "",
+                        0,
+                        0
+                      ]
+                    ],
+                    "len": 0
+                  }
+                }
+              }
+            },
+            "4": {
+              "1": {
+                "1": {
+                  "": {
+                    "rem": [
+                      [
+                        "",
+                        "",
+                        0,
+                        0
+                      ]
+                    ],
+                    "len": 0
+                  }
+                }
+              }
+            },
+            "5": {
+              "1": {
+                "1": {
+                  "": {
+                    "rem": [
+                      [
+                        "",
+                        "",
+                        0,
+                        0
+                      ]
+                    ],
+                    "len": 0
+                  }
+                }
+              }
+            }
+          },
+          "cookies": {
+            "0": {
+              "1": {
+                "1": {
+                  "": {
+                    "rem": [
+                      [
+                        "",
+                        "",
+                        0,
+                        0
+                      ]
+                    ],
+                    "len": 0
+                  }
+                }
+              }
+            },
+            "1": {
+              "1": {
+                "1": {
+                  "": {
+                    "rem": [
+                      [
+                        "",
+                        "",
+                        0,
+                        0
+                      ]
+                    ],
+                    "len": 0
+                  }
+                }
+              }
+            },
+            "2": {
+              "1": {
+                "1": {
+                  "": {
+                    "rem": [
+                      [
+                        "",
+                        "",
+                        0,
+                        0
+                      ]
+                    ],
+                    "len": 0
+                  }
+                }
+              }
+            }
+          },
+          "env": null
+        }
+      }
+    },
+    "message": null,
+    "user": null,
+    "contexts": null,
+    "sdk": null,
+    "context": {
+      "hostname": {
+        "": {
+          "rem": [
+            [
+              "",
+              "",
+              0,
+              0
+            ]
+          ],
+          "len": 0,
+          "chunks": [
+            {
+              "type": "",
+              "text": "",
+              "rule_id": "",
+              "remark": ""
+            }
+          ]
+        }
+      }
+    },
+    "packages": null,
+    "tags": {}
+  },
+  "crashFile": null,
+  "culprit": "",
+  "dateCreated": "",
+  "fingerprints": [
+    ""
+  ],
+  "groupingConfig": {
+    "enhancements": "",
+    "id": ""
+  },
+  "release": null,
+  "userReport": null,
+  "sdkUpdates": [
+    {
+      "type": "",
+      "sdkName": "",
+      "newSdkVersion": "",
+      "sdkUrl": "",
+      "enables": []
+    }
+  ],
+  "nextEventID": null,
+  "previousEventID": ""
+}
