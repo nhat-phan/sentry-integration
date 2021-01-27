@@ -1,39 +1,37 @@
 <idea-plugin>
-    <id>net.ntworld.nhat-phan.sentry-integration</id>
-    <name>Sentry Integration</name>
+    <id>net.ntworld.nhat-phan.sentry-integration-community</id>
+    <name>Sentry Integration Community</name>
     <vendor>ntworld</vendor>
     <version>1.0.203</version>
-    <product-descriptor code="PSENTRYINTEG" release-date="20210101" release-version="1"/>
-
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
     <depends>com.intellij.modules.vcs</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService
-                serviceInterface="net.ntworld.sentryIntegrationIdea.serviceProvider.ApplicationServiceProvider"
-                serviceImplementation="net.ntworld.sentryIntegrationIdea.serviceProvider.ApplicationServiceProviderImpl"
+                serviceInterface="net.ntworld.sentryIntegrationIdea.serviceProvider.community.ApplicationServiceProviderCommunity"
+                serviceImplementation="net.ntworld.sentryIntegrationIdea.serviceProvider.community.ApplicationServiceProviderCommunityImpl"
         />
         <projectService
-                serviceInterface="net.ntworld.sentryIntegrationIdea.serviceProvider.ProjectServiceProvider"
-                serviceImplementation="net.ntworld.sentryIntegrationIdea.serviceProvider.ProjectServiceProviderImpl"
+                serviceInterface="net.ntworld.sentryIntegrationIdea.serviceProvider.community.ProjectServiceProviderCommunity"
+                serviceImplementation="net.ntworld.sentryIntegrationIdea.serviceProvider.community.ProjectServiceProviderCommunityImpl"
         />
         <projectConfigurable
-                id="sentry-integration"
-                displayName="Sentry Integration"
-                instance="net.ntworld.sentryIntegrationIdea.serviceProvider.PluginConfigurable"
+                id="sentry-integration-community"
+                displayName="Sentry Integration Community"
+                instance="net.ntworld.sentryIntegrationIdea.serviceProvider.community.PluginConfigurableCommunity"
         />
 
         <notificationGroup displayType="TOOL_WINDOW"
-                           id="sentry.integration.toolWindow"
-                           toolWindowId="Sentry Integration" />
+                           id="sentry.integration.community.toolWindow"
+                           toolWindowId="Sentry Integration Community" />
 
-        <toolWindow id="Sentry Integration"
+        <toolWindow id="Sentry Integration Community"
                     secondary="false"
                     anchor="bottom"
                     icon="/icons/main-tool-window-default.svg"
                     canCloseContents="true"
-                    factoryClass="net.ntworld.sentryIntegrationIdea.toolWindow.MainToolWindowFactory"/>
+                    factoryClass="net.ntworld.sentryIntegrationIdea.toolWindow.community.MainToolWindowFactoryCommunity"/>
 
     </extensions>
 
