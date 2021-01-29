@@ -1,6 +1,7 @@
 package net.ntworld.sentryIntegrationIdea.setupWizard.component
 
 import com.intellij.util.EventDispatcher
+import com.intellij.util.ui.UIUtil
 import net.miginfocom.swing.MigLayout
 import net.ntworld.sentryIntegration.entity.LinkedProject
 import net.ntworld.sentryIntegration.entity.SentryProject
@@ -18,10 +19,13 @@ class SelectEnvironmentComponent(
 
     init {
         component.add(myEnvironmentFormComponent.component, "wrap")
+        myEnvironmentFormComponent.changeBackgroundToEditorPaneBackground()
 
         val myButtonWrapper = JPanel(MigLayout("wrap, insets 0", "10push[]10[]10", "10[center]10"))
         myFinishButton.text = "Finish"
         myButtonWrapper.add(myFinishButton)
+        myFinishButton.background = UIUtil.getEditorPaneBackground()
+        myButtonWrapper.background = UIUtil.getEditorPaneBackground()
         myFinishButton.addActionListener { this.validateAndMoveToNextStep() }
 
         component.add(myButtonWrapper, "dock south")

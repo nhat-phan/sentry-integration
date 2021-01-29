@@ -4,6 +4,7 @@ import com.intellij.ide.BrowserUtil
 import com.intellij.openapi.ui.Messages
 import com.intellij.util.EventDispatcher
 import com.intellij.util.ui.JBUI
+import com.intellij.util.ui.UIUtil
 import net.miginfocom.swing.MigLayout
 import net.ntworld.sentryIntegration.SentryApiManager
 import net.ntworld.sentryIntegration.cache.CacheManager
@@ -29,7 +30,8 @@ class CreateConnectionComponent(
     private val myOpenSentryUrl = JLabel()
 
     init {
-        val myWrapper = JPanel(MigLayout("wrap, insets 0", "[right]5[fill,grow]", "10[center]10"))
+        val myWrapper = JPanel(MigLayout("wrap, insets 0", "[right]5[fill,grow]", "10[center]"))
+        myWrapper.background = UIUtil.getEditorPaneBackground()
 
         myWrapper.add(makeLabel("Server Url"))
         myServerUrlTextField.text = "https://sentry.io"
@@ -50,8 +52,10 @@ class CreateConnectionComponent(
         component.add(myWrapper, "wrap")
 
         val myButtonWrapper = JPanel(MigLayout("wrap, insets 0", "10push[]10[]10", "10[center]10"))
+        myButtonWrapper.background = UIUtil.getEditorPaneBackground()
         if (showCancelButton) {
             myCancelButton.text = "Cancel"
+            myCancelButton.background = UIUtil.getEditorPaneBackground()
             myButtonWrapper.add(myCancelButton)
             myCancelButton.addActionListener {
                 dispatcher.multicaster.onCreateConnectionCancelClicked()
@@ -59,6 +63,7 @@ class CreateConnectionComponent(
         }
 
         myTestButton.text = "Test Connection"
+        myTestButton.background = UIUtil.getEditorPaneBackground()
         myButtonWrapper.add(myTestButton)
         myTestButton.addActionListener { this.onTestButtonClicked() }
         component.add(myButtonWrapper, "dock south")

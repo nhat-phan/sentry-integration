@@ -4,6 +4,7 @@ import com.intellij.ui.JBColor
 import com.intellij.ui.ScrollPaneFactory
 import com.intellij.util.EventDispatcher
 import com.intellij.util.ui.JBUI
+import com.intellij.util.ui.UIUtil
 import net.miginfocom.swing.MigLayout
 import net.ntworld.sentryIntegration.entity.Connection
 import net.ntworld.sentryIntegrationIdea.Icons
@@ -69,6 +70,7 @@ class SelectConnectionComponent(
 
     init {
         val myWrapper = JPanel(MigLayout("wrap, gap 10", "[fill,grow]"))
+        myWrapper.background = UIUtil.getEditorPaneBackground()
 
         for (connection in connections) {
             val item = JPanel(MigLayout("wrap", "[right]5[fill,grow]", "10[]10"))
@@ -109,15 +111,18 @@ class SelectConnectionComponent(
 
             myItemConnectionMap[item] = connection
             item.addMouseListener(myItemMouseListener)
+            item.background = UIUtil.getEditorPaneBackground()
             myWrapper.add(item, "wrap")
         }
 
         val myButtonWrapper = JPanel(MigLayout("wrap, insets 0", "10[]push", "10[center]10"))
         myCreateNewConnectionButton.text = "Create New Connection"
+        myCreateNewConnectionButton.background = UIUtil.getEditorPaneBackground()
         myButtonWrapper.add(myCreateNewConnectionButton)
         myCreateNewConnectionButton.addActionListener {
             dispatcher.multicaster.onCreateConnectionButtonClicked()
         }
+        myButtonWrapper.background = UIUtil.getEditorPaneBackground()
         component.add(myButtonWrapper, "dock south")
 
         component.add(ScrollPaneFactory.createScrollPane(myWrapper, true), "wrap")

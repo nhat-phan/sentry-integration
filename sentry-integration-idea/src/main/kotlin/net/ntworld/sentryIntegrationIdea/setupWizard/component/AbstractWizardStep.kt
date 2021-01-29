@@ -1,6 +1,7 @@
 package net.ntworld.sentryIntegrationIdea.setupWizard.component
 
 import com.intellij.util.ui.JBUI
+import com.intellij.util.ui.UIUtil
 import net.miginfocom.swing.MigLayout
 import net.ntworld.sentryIntegrationIdea.Component
 import java.awt.Color
@@ -12,7 +13,7 @@ import javax.swing.JPanel
 abstract class AbstractWizardStep(
     private val text: String
 ): Component {
-    final override val component: JPanel = JPanel(MigLayout("wrap, insets 0", "10[fill,grow]10", "10[fill,grow]10"))
+    final override val component: JPanel = JPanel(MigLayout("wrap, insets 0", "10[fill,grow]10", "10[fill,grow]"))
     private var myIsActive: Boolean = false
     private val myLabel = JLabel()
 
@@ -26,8 +27,11 @@ abstract class AbstractWizardStep(
         myLabel.text = text
         myLabel.font = Font.getFont(attributes)
         myLabel.foreground = Color.GRAY
+        myLabelWrapper.background = UIUtil.getEditorPaneBackground()
         myLabelWrapper.add(myLabel)
+
         component.add(myLabelWrapper, "dock north")
+        component.background = UIUtil.getEditorPaneBackground()
     }
 
     fun setState(isActive: Boolean) {

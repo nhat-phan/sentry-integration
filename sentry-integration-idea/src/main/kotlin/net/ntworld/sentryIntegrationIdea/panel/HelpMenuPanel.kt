@@ -2,6 +2,7 @@ package net.ntworld.sentryIntegrationIdea.panel;
 
 import com.intellij.ide.BrowserUtil
 import com.intellij.util.ui.JBUI
+import com.intellij.util.ui.UIUtil
 import net.ntworld.sentryIntegrationIdea.Component
 import net.ntworld.sentryIntegrationIdea.serviceProvider.ProjectServiceProvider
 import net.ntworld.sentryIntegrationIdea.toolWindow.MainToolWindowManager
@@ -12,6 +13,7 @@ import javax.swing.*;
 
 class HelpMenuPanel(private val projectServiceProvider: ProjectServiceProvider): Component {
     var myWrapper: JPanel? = null
+    var myLinkWrapper: JPanel? = null
     var myTitleLabel: JLabel? = null
     var myOpenProjectManagerLabel: JLabel? = null
     var myOpenSetupWizardLabel: JLabel? = null
@@ -19,6 +21,9 @@ class HelpMenuPanel(private val projectServiceProvider: ProjectServiceProvider):
 
 
     init {
+        myWrapper!!.background = UIUtil.getEditorPaneBackground()
+        myLinkWrapper!!.background = UIUtil.getEditorPaneBackground()
+
         myTitleLabel!!.foreground = JBUI.CurrentTheme.Link.linkColor()
 
         myOpenProjectManagerLabel!!.cursor = Cursor(Cursor.HAND_CURSOR)

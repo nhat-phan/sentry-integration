@@ -37,8 +37,10 @@ class RepositoryManagerImpl(private val project: Project) : RepositoryManager {
         if (null === virtualFile) {
             return false
         }
-        myCheckSourceFiles[key] = !rootChecker.isIgnored(repository.root, virtualFile)
-        return myCheckSourceFiles[key]!!
+
+        val created = !rootChecker.isIgnored(repository.root, virtualFile)
+        myCheckSourceFiles[key] = created
+        return created
     }
 
     override fun findLocalFilePath(linkedProject: LinkedProject, path: String): FilePath {

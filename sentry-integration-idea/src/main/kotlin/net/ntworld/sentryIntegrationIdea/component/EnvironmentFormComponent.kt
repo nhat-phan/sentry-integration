@@ -2,6 +2,7 @@ package net.ntworld.sentryIntegrationIdea.component
 
 import com.intellij.openapi.ui.ComboBox
 import com.intellij.ui.components.panels.Wrapper
+import com.intellij.util.ui.UIUtil
 import net.miginfocom.swing.MigLayout
 import net.ntworld.sentryIntegration.entity.LinkedProject
 import net.ntworld.sentryIntegration.entity.SentryProject
@@ -20,6 +21,7 @@ class EnvironmentFormComponent(displayProjectName: Boolean = false): Component {
     private val myProjects = ComboBox<Item>()
     private val myDeployedBranch = JTextField()
     private val myDeployedRootPath = JTextField()
+    private val myComboBaxWrapper = Wrapper(myProjects)
 
     init {
         if (displayProjectName) {
@@ -36,7 +38,6 @@ class EnvironmentFormComponent(displayProjectName: Boolean = false): Component {
         component.add(myEnableWorkerCheckbox)
 
         component.add(makeLabel("Sentry Project"))
-        val myComboBaxWrapper = Wrapper(myProjects)
         myComboBaxWrapper.setHorizontalSizeReferent(myEnvironmentName)
         component.add(myComboBaxWrapper)
 
@@ -54,6 +55,11 @@ class EnvironmentFormComponent(displayProjectName: Boolean = false): Component {
         myProjects.isEnabled = isActive
         myDeployedBranch.isEnabled = isActive
         myDeployedRootPath.isEnabled = isActive
+    }
+
+    fun changeBackgroundToEditorPaneBackground() {
+        component.background = UIUtil.getEditorPaneBackground()
+        myComboBaxWrapper.background = UIUtil.getEditorPaneBackground()
     }
 
     fun requestFocusOnEnvironmentName() {

@@ -18,8 +18,18 @@ class ToolWindowTab<T : Component>(
     private var myTabName = properties.tabName
     private var myIsOpened: Boolean = false
     private var myContent: Content? = null
+    private var myComponent: T? = null
     private val delegate = lazy { makeContent() }
-    val component: T by lazy { componentFactory.invoke() }
+    val component: T
+        get()  {
+            val component = myComponent
+            if (null === component) {
+                val created = componentFactory.invoke()
+                myComponent = created
+                return created
+            }
+            return component
+        }
     val content by delegate
     val isOpened: Boolean
         get() = myIsOpened
@@ -56,6 +66,7 @@ class ToolWindowTab<T : Component>(
                     content.dispose()
                 }
                 myContent = null
+                myComponent = null
             }
         }
 

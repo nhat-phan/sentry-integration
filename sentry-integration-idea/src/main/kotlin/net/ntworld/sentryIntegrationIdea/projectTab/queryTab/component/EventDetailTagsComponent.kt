@@ -15,6 +15,7 @@ class EventDetailTagsComponent(
     private val myTagsWrapper = JPanel(MigLayout("wrap, insets 0", "5[right]5[fill,grow]5", "5[center]5"))
 
     init {
+        myTagsWrapper.background = UIUtil.getEditorPaneBackground()
         container.add(myTagsWrapper)
     }
 

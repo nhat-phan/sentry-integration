@@ -9,6 +9,7 @@ import com.intellij.openapi.ui.SimpleToolWindowPanel
 import com.intellij.ui.ScrollPaneFactory
 import com.intellij.ui.components.panels.Wrapper
 import com.intellij.util.EventDispatcher
+import com.intellij.util.ui.UIUtil
 import net.miginfocom.swing.MigLayout
 import net.ntworld.sentryIntegration.entity.PluginConfiguration
 import net.ntworld.sentryIntegration.entity.SentryEventDetail
@@ -95,6 +96,7 @@ class IssueDetailComponent(
     }
 
     init {
+        myWrapper.background = UIUtil.getEditorPaneBackground()
         myWrapper.add(myIssueDetailStatsComponent.component, "newline")
         myWrapper.add(myEventDetailTagsComponent.component, "newline")
 

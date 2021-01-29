@@ -8,8 +8,7 @@ Sentry Integration is an open-source plugin for JetBrains IDEs which helps you
 - Assign or un-assign an issue.
 - Resolve, bookmark and subscribe an issue.
 
-...updating...
-
+<img src="https://raw.githubusercontent.com/nhat-phan/sentry-integration/master/images/v1.0.x.gif" alt="Sentry Integration" style="width: 100%" />
 
 ### About me
 

@@ -1,6 +1,7 @@
 package net.ntworld.sentryIntegrationIdea.projectTab.queryTab.component
 
 import com.intellij.util.ui.JBUI
+import com.intellij.util.ui.UIUtil
 import net.miginfocom.swing.MigLayout
 import net.ntworld.sentryIntegrationIdea.Component
 import java.awt.Color
@@ -33,6 +34,9 @@ abstract class AbstractDetailComponent(private val name: String, private val tog
     init {
         component.layout = BoxLayout(component, BoxLayout.Y_AXIS)
         container.layout = BoxLayout(container, BoxLayout.Y_AXIS)
+        component.background = UIUtil.getEditorPaneBackground()
+        container.background = UIUtil.getEditorPaneBackground()
+        myLabelWrapper.background = UIUtil.getEditorPaneBackground()
 
         val attributes: MutableMap<TextAttribute, Any?> = HashMap()
         attributes[TextAttribute.WEIGHT] = TextAttribute.WEIGHT_BOLD

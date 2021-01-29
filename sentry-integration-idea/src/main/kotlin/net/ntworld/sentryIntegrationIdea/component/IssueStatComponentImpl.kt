@@ -1,5 +1,6 @@
 package net.ntworld.sentryIntegrationIdea.component
 
+import com.intellij.util.ui.UIUtil
 import net.miginfocom.swing.MigLayout
 import net.ntworld.sentryIntegration.DateTimeUtil
 import net.ntworld.sentryIntegration.entity.SentryIssueStat
@@ -100,6 +101,9 @@ class IssueStatComponentImpl(
     override val component = JPanel(MigLayout("fill", "0[center]0", "5[center]5"))
 
     init {
+        myChart.background = UIUtil.getEditorPaneBackground()
+        component.background = UIUtil.getEditorPaneBackground()
+
         myChart.addMouseListener(myChartMouseListener)
         component.addMouseListener(myChartMouseListener)
         component.add(myChart, "wrap")
@@ -195,6 +199,7 @@ class IssueStatComponentImpl(
         val scale = JPanel(null)
 
         init {
+            wrapper.background = UIUtil.getEditorPaneBackground()
             wrapper.add(scale)
         }
 

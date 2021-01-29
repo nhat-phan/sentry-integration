@@ -3,6 +3,7 @@ package net.ntworld.sentryIntegrationIdea.setupWizard.component
 import com.intellij.openapi.ui.ComboBox
 import com.intellij.ui.components.panels.Wrapper
 import com.intellij.util.EventDispatcher
+import com.intellij.util.ui.UIUtil
 import net.miginfocom.swing.MigLayout
 import net.ntworld.sentryIntegration.entity.LinkedProject
 import net.ntworld.sentryIntegration.entity.LocalRepository
@@ -22,10 +23,12 @@ class SelectProjectComponent(
 
     init {
         val myWrapper = JPanel(MigLayout("wrap, insets 0", "[right]5[fill,grow]", "10[center]10"))
+        myWrapper.background = UIUtil.getEditorPaneBackground()
 
         myWrapper.add(makeLabel("Local Repository"))
         val myComboBaxWrapper = Wrapper(myRepositories)
         myComboBaxWrapper.setHorizontalSizeReferent(myProjectName)
+        myComboBaxWrapper.background = UIUtil.getEditorPaneBackground()
         myWrapper.add(myComboBaxWrapper)
         myRepositories.addActionListener { this.onRepositoryChanged() }
 
@@ -36,7 +39,9 @@ class SelectProjectComponent(
 
         val myButtonWrapper = JPanel(MigLayout("wrap, insets 0", "10push[]10[]10", "10[center]10"))
         myNextButton.text = "Next"
+        myNextButton.background = UIUtil.getEditorPaneBackground()
         myButtonWrapper.add(myNextButton)
+        myButtonWrapper.background = UIUtil.getEditorPaneBackground()
 
         myNextButton.addActionListener { this.validateAndMoveToNextStep() }
         component.add(myButtonWrapper, "dock south")
