@@ -30,7 +30,7 @@ class IssueDetailComponent(
     private val pluginConfiguration: PluginConfiguration,
     private val dispatcher: EventDispatcher<QueryTabView.ActionListener>
 ) : Component {
-    override val component = CustomSimpleToolWindowPanel(vertical = true, borderless = false)
+    override val component = CustomSimpleToolWindowPanel(vertical = true)
     private var isIssueDetailLoading = false
     private var isEventDetailLoading = false
     private var myIssue: SentryIssue? = null

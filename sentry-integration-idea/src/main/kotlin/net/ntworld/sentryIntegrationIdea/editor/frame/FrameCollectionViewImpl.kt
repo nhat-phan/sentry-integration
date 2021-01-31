@@ -7,6 +7,7 @@ import com.intellij.openapi.editor.impl.EditorEmbeddedComponentManager
 import com.intellij.openapi.editor.impl.EditorImpl
 import com.intellij.openapi.editor.impl.view.FontLayoutService
 import com.intellij.openapi.util.Disposer
+import com.intellij.ui.JBColor
 import com.intellij.ui.components.JBScrollPane
 import com.intellij.util.EventDispatcher
 import com.intellij.util.ui.JBUI
@@ -19,6 +20,7 @@ import java.awt.Font
 import java.awt.GridBagLayout
 import java.awt.event.ComponentAdapter
 import java.awt.event.ComponentEvent
+import javax.swing.BorderFactory
 import javax.swing.JComponent
 import javax.swing.JPanel
 import javax.swing.ScrollPaneConstants
@@ -45,6 +47,7 @@ class FrameCollectionViewImpl(
         myComponentScrollPane.isVisible = false
         myComponentScrollPane.cursor = Cursor.getDefaultCursor()
 
+        myWrapper.border = BorderFactory.createMatteBorder(1, 1, 1, 1, JBColor.border())
         myWrapper.layout = GridBagLayout()
         myWrapper.add(myComponentScrollPane)
 
@@ -58,7 +61,7 @@ class FrameCollectionViewImpl(
         editorEmbeddedComponentManager.addComponent(
             editor,
             myWrapper,
-            projectServiceProvider.intellijIdeApi.makeEditorEmbeddedComponentManagerProperties(offset)
+            projectServiceProvider.applicationServiceProvider.intellijIdeApi.makeEditorEmbeddedComponentManagerProperties(offset)
         )
 
         EditorUtil.disposeWithEditor(editor, this)

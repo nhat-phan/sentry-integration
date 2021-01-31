@@ -38,8 +38,6 @@ open class ProjectServiceProviderImpl(
             )
         }
 
-    override val intellijIdeApi: IntellijIdeApi = Version203Adapter()
-
     override val linkedProjects: List<LinkedProject>
         get() = myLinkedProjects.values.toList()
 

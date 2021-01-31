@@ -16,7 +16,7 @@ class ProjectManagerTreeWrapperComponent(
     private val projectServiceProvider: ProjectServiceProvider,
     private val dispatcher: EventDispatcher<ProjectManagerView.ActionListener>
 ): Component {
-    private val myComponent = CustomSimpleToolWindowPanel(vertical = true, borderless = false)
+    private val myComponent = CustomSimpleToolWindowPanel(vertical = true)
     private val myProjectTreeComponent = ComponentFactory.makeProjectsTreeComponent(projectServiceProvider)
     private val myProjectManagerTreeToolbarComponent = ProjectManagerTreeToolbarComponent(dispatcher, this)
     private val myProjectTreeListenerForward = object : ProjectsTreeComponent.Listener {

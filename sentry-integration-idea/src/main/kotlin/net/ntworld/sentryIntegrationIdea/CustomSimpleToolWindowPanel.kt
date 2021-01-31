@@ -19,13 +19,11 @@ import javax.swing.JComponent
 import javax.swing.SwingConstants
 
 class CustomSimpleToolWindowPanel(
-    private val vertical: Boolean,
-    private val borderless: Boolean
+    private val vertical: Boolean
 ) : JBPanelWithEmptyText(), QuickActionProvider, DataProvider {
     private var myToolbar: JComponent? = null
     private var myContent: JComponent? = null
 
-    private var myBorderless = borderless
     private var myVertical = vertical
     private var myProvideQuickActions = false
 
@@ -39,9 +37,6 @@ class CustomSimpleToolWindowPanel(
 
                 if (child is Container) {
                     child.addContainerListener(this)
-                }
-                if (myBorderless) {
-                    UIUtil.removeScrollBorder(this@CustomSimpleToolWindowPanel)
                 }
             }
 
@@ -120,9 +115,6 @@ class CustomSimpleToolWindowPanel(
         }
         myContent = c
         add(c, BorderLayout.CENTER)
-        if (myBorderless) {
-            UIUtil.removeScrollBorder(c)
-        }
         revalidate()
         repaint()
     }

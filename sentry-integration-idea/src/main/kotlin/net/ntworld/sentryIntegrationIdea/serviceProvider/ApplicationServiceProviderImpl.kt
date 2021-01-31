@@ -2,8 +2,6 @@ package net.ntworld.sentryIntegrationIdea.serviceProvider
 
 import com.intellij.credentialStore.CredentialAttributes
 import com.intellij.ide.passwordSafe.PasswordSafe
-import com.intellij.notification.NotificationGroupManager
-import com.intellij.notification.NotificationType
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.PersistentStateComponent
 import com.intellij.openapi.components.State
@@ -16,6 +14,7 @@ import net.ntworld.sentryIntegration.debug
 import net.ntworld.sentryIntegration.entity.Connection
 import net.ntworld.sentryIntegration.entity.Scope
 import net.ntworld.sentryIntegration.entity.SentryUserInfo
+import net.ntworld.sentryIntegrationIdea.compatibility.*
 import net.ntworld.sentryIntegrationIdea.notifier.ConnectionNotifier
 import org.jdom.Element
 
@@ -27,6 +26,8 @@ open class ApplicationServiceProviderImpl : ApplicationServiceProvider, Persiste
     override val isPaidPlugin: Boolean = true
 
     override val paidPluginUrl: String = "https://plugins.jetbrains.com/plugin/15945-sentry-integration"
+
+    override val intellijIdeApi: IntellijIdeApi = Version203Adapter()
 
     override val toolWindowConfigurationGroup: String = "sentry.integration.toolWindow"
 
@@ -102,13 +103,7 @@ open class ApplicationServiceProviderImpl : ApplicationServiceProvider, Persiste
     }
 
     private fun notifySetupConnection(project: Project) {
-        val notificationGroupManager = ApplicationManager.getApplication().getService(NotificationGroupManager::class.java)
-        val notificationGroup = notificationGroupManager.getNotificationGroup(toolWindowConfigurationGroup)
-        val notification = notificationGroup.createNotification(
-            "Thank you for using the plugin, please click here to start",
-            NotificationType.INFORMATION
-        )
-        notification.notify(project)
+        intellijIdeApi.notifySetupConnection(project, toolWindowConfigurationGroup)
     }
 
     private fun storeToken(id: String, token: String) {

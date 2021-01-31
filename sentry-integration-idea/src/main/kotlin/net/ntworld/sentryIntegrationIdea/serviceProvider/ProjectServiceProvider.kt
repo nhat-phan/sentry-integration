@@ -15,8 +15,6 @@ interface ProjectServiceProvider {
 
     val project: Project
 
-    val intellijIdeApi: IntellijIdeApi
-
     val connections: List<Connection>
         get() = applicationServiceProvider.connections
 

@@ -49,7 +49,9 @@ tasks {
     }
 
     named<org.jetbrains.intellij.tasks.PatchPluginXmlTask>("patchPluginXml") {
-        changeNotes(htmlFixer("./sentry-integration-idea/doc/release-notes.$artifactVersion.html"))
+        val parts = artifactVersion.split('.')
+        val mainVersion = "${parts[0]}.${parts[1]}"
+        changeNotes(htmlFixer("./sentry-integration-idea/doc/release-notes.$mainVersion.html"))
         pluginDescription(htmlFixer("./sentry-integration-idea/doc/description.html"))
         sinceBuild(intellijSinceBuild)
         untilBuild(intellijUntilBuild)

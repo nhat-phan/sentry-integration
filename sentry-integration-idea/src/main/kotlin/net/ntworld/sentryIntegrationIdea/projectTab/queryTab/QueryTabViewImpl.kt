@@ -36,7 +36,7 @@ class QueryTabViewImpl(
     private val name: String
 ) : AbstractView<QueryTabView.ActionListener>(), QueryTabView {
     override val dispatcher = EventDispatcher.create(QueryTabView.ActionListener::class.java)
-    override val component = CustomSimpleToolWindowPanel(vertical = false, borderless = false)
+    override val component = CustomSimpleToolWindowPanel(vertical = false)
     private var myDisplayedIssue: SentryIssue? = null
     private var myDisplayedIssueDetail: SentryIssueDetail? = null
     private var myDisplayedEventDetail: SentryEventDetail? = null
