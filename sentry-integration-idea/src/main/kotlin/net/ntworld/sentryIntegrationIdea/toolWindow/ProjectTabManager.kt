@@ -133,8 +133,9 @@ class ProjectTabManager(
                 tabName = "${linkedProject.name} · ${linkedProject.environmentName}",
                 disposeAfterRemoved = true,
                 listener = myTabListener
-            )
-        ) { ProjectTabFactory.makeProjectTabPresenter(projectServiceProvider, linkedProject) }
+            ),
+            ProjectTabPresenterFactory(this, linkedProject.id)
+        )
 
         myTabs[linkedProject.id] = created
         ApplicationManager.getApplication().invokeLater { created.open() }
@@ -154,5 +155,18 @@ class ProjectTabManager(
             initializeProjects,
             myValidateLinkedProjectsTaskListener
         ).start("MainToolWindowLinkedProjectContentManager")
+    }
+
+    private class ProjectTabPresenterFactory(
+        private val self: ProjectTabManager,
+        private val linkedProjectId: String
+    ): ToolWindowTab.ComponentFactory<ProjectTabPresenter> {
+        override fun make(): ProjectTabPresenter {
+            val linkedProject = self.myLinkedProjects[linkedProjectId]
+            if (null === linkedProject) {
+                throw Exception("Linked project $linkedProjectId is not found")
+            }
+            return ProjectTabFactory.makeProjectTabPresenter(self.projectServiceProvider, linkedProject)
+        }
     }
 }

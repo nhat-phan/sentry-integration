@@ -99,6 +99,12 @@ class ProjectManagerTreeToolbarComponent(
             val projects = self.wrapper.selectedProjectCollection
             if (null !== projects) {
                 self.dispatcher.multicaster.onOpenProjectsClicked(projects)
+                return
+            }
+
+            val project = self.wrapper.selectedProject
+            if (null !== project) {
+                self.dispatcher.multicaster.onOpenProjectsClicked(listOf(project))
             }
         }
 

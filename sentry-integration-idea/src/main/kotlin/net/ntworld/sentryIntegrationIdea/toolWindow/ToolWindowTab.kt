@@ -10,11 +10,17 @@ import com.intellij.ui.content.ContentManagerListener
 import net.ntworld.sentryIntegration.debug
 import net.ntworld.sentryIntegrationIdea.Component
 
-class ToolWindowTab<T : Component>(
+open class ToolWindowTab<T : Component>(
     private val toolWindow: ToolWindow,
     private val properties: Properties,
-    private val componentFactory: () -> T
+    private val componentFactory: ComponentFactory<T>
 ) {
+    constructor(
+        toolWindow: ToolWindow,
+        properties: Properties,
+        factory: () -> T
+    ): this(toolWindow, properties, SimpleComponentFactory(factory))
+
     private var myTabName = properties.tabName
     private var myIsOpened: Boolean = false
     private var myContent: Content? = null
@@ -24,7 +30,7 @@ class ToolWindowTab<T : Component>(
         get()  {
             val component = myComponent
             if (null === component) {
-                val created = componentFactory.invoke()
+                val created = componentFactory.make()
                 myComponent = created
                 return created
             }
@@ -148,5 +154,15 @@ class ToolWindowTab<T : Component>(
         fun didOpen(component: Any, willBeDisposed: Boolean)
 
         fun didClose(component: Any, willBeDisposed: Boolean)
+    }
+
+    interface ComponentFactory<T : Component> {
+        fun make(): T
+    }
+
+    private class SimpleComponentFactory<T : Component>(private val componentFactory: () -> T): ComponentFactory<T> {
+        override fun make(): T {
+            return componentFactory.invoke()
+        }
     }
 }
