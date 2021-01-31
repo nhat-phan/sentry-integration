@@ -93,7 +93,7 @@ class ProjectManagerTreeToolbarComponent(
     }
 
     private class MyOpenAction(private val self: ProjectManagerTreeToolbarComponent) : AnAction(
-        "Open", null, AllIcons.Actions.MenuOpen
+        "Open", null, Icons.OpenProject
     ) {
         override fun actionPerformed(e: AnActionEvent) {
             val projects = self.wrapper.selectedProjectCollection

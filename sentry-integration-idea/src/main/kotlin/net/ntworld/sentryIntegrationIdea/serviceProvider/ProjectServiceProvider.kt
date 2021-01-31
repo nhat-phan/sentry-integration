@@ -6,7 +6,6 @@ import net.ntworld.sentryIntegration.entity.Connection
 import net.ntworld.sentryIntegration.entity.LocalRepository
 import net.ntworld.sentryIntegration.entity.PluginConfiguration
 import net.ntworld.sentryIntegration.entity.SentryProject
-import net.ntworld.sentryIntegrationIdea.compatibility.IntellijIdeApi
 import net.ntworld.sentryIntegrationIdea.editor.EditorManager
 import net.ntworld.sentryIntegrationIdea.repository.RepositoryManager
 

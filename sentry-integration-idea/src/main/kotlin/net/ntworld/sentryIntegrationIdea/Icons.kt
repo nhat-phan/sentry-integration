@@ -3,6 +3,7 @@ package net.ntworld.sentryIntegrationIdea
 import com.intellij.openapi.util.IconLoader
 
 object Icons {
+    val OpenProject = IconLoader.getIcon("/icons/folder-open.svg", this::class.java)
     val Trash = IconLoader.getIcon("/icons/trash.svg", this::class.java)
     val Ignore = IconLoader.getIcon("/icons/ban.svg", this::class.java)
     val Resolve = IconLoader.getIcon("/icons/check-gray.svg", this::class.java)

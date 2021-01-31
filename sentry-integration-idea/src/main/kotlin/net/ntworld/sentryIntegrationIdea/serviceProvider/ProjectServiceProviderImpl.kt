@@ -12,8 +12,6 @@ import net.ntworld.sentryIntegration.entity.LinkedProject
 import net.ntworld.sentryIntegration.entity.LocalRepository
 import net.ntworld.sentryIntegration.entity.PluginConfiguration
 import net.ntworld.sentryIntegration.entity.SentryProject
-import net.ntworld.sentryIntegrationIdea.compatibility.IntellijIdeApi
-import net.ntworld.sentryIntegrationIdea.compatibility.Version203Adapter
 import net.ntworld.sentryIntegrationIdea.editor.EditorManager
 import net.ntworld.sentryIntegrationIdea.editor.EditorManagerImpl
 import net.ntworld.sentryIntegrationIdea.license.LicenseChecker

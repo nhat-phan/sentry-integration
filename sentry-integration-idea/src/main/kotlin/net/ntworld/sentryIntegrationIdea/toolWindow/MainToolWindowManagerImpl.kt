@@ -105,7 +105,7 @@ class MainToolWindowManagerImpl(
     }
 
     private class MyOpenLinkedProjectAction(private val self: MainToolWindowManagerImpl) : AnAction(
-        "Open Project", "Open project", AllIcons.Actions.MenuOpen
+        "Open Project", "Open project", Icons.OpenProject
     ) {
         override fun actionPerformed(e: AnActionEvent) {
             val dialog = OpenProjectsDialog(self.projectServiceProvider, self.projectServiceProvider.linkedProjects)
