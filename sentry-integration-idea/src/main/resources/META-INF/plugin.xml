@@ -22,10 +22,6 @@
                 instance="net.ntworld.sentryIntegrationIdea.serviceProvider.community.PluginConfigurableCommunity"
         />
 
-        <notificationGroup displayType="TOOL_WINDOW"
-                           id="sentry.integration.community.toolWindow"
-                           toolWindowId="Sentry Integration Community" />
-
         <toolWindow id="Sentry Integration Community"
                     secondary="false"
                     anchor="bottom"
