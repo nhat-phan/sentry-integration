@@ -24,10 +24,6 @@
                 instance="net.ntworld.sentryIntegrationIdea.serviceProvider.PluginConfigurable"
         />
 
-        <notificationGroup displayType="TOOL_WINDOW"
-                           id="sentry.integration.toolWindow"
-                           toolWindowId="Sentry Integration" />
-
         <toolWindow id="Sentry Integration"
                     secondary="false"
                     anchor="bottom"

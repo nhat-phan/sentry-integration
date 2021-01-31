@@ -27,7 +27,7 @@ open class ApplicationServiceProviderImpl : ApplicationServiceProvider, Persiste
 
     override val paidPluginUrl: String = "https://plugins.jetbrains.com/plugin/15945-sentry-integration"
 
-    override val intellijIdeApi: IntellijIdeApi = Version203Adapter()
+    override val intellijIdeApi: IntellijIdeApi = Version201Adapter()
 
     override val toolWindowConfigurationGroup: String = "sentry.integration.toolWindow"
 
