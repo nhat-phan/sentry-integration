@@ -7,6 +7,8 @@ import net.miginfocom.swing.MigLayout
 import net.ntworld.sentryIntegration.entity.LinkedProject
 import net.ntworld.sentryIntegration.entity.SentryProject
 import net.ntworld.sentryIntegrationIdea.Component
+import java.awt.event.ItemEvent
+import java.awt.event.ItemListener
 import javax.swing.JCheckBox
 import javax.swing.JComponent
 import javax.swing.JLabel
@@ -18,6 +20,7 @@ class EnvironmentFormComponent(displayProjectName: Boolean = false): Component {
     private val myProjectName = JTextField()
     private val myEnvironmentName = JTextField()
     private val myEnableWorkerCheckbox = JCheckBox()
+    private val myUseCompiledLanguageCheckbox = JCheckBox()
     private val myProjects = ComboBox<Item>()
     private val myDeployedBranch = JTextField()
     private val myDeployedRootPath = JTextField()
@@ -43,6 +46,10 @@ class EnvironmentFormComponent(displayProjectName: Boolean = false): Component {
 
         component.add(makeLabel("Deployed Branch"))
         component.add(myDeployedBranch)
+
+        myUseCompiledLanguageCheckbox.text = "The project is compiled programming language (such as java, kotlin)"
+        component.add(makeEmptyComponent())
+        component.add(myUseCompiledLanguageCheckbox)
 
         component.add(makeLabel("Deployed Root Path"))
         component.add(myDeployedRootPath)
@@ -71,6 +78,9 @@ class EnvironmentFormComponent(displayProjectName: Boolean = false): Component {
 
     fun getEnvironmentName(): String = myEnvironmentName.text
     fun setEnvironmentName(value: String) { myEnvironmentName.text = value}
+
+    fun getUseCompiledLanguage(): Boolean = myUseCompiledLanguageCheckbox.isSelected
+    fun setUseCompiledLanguage(value: Boolean) { myUseCompiledLanguageCheckbox.isSelected = value }
 
     fun getDeployedBranch(): String = myDeployedBranch.text
     fun setDeployedBranch(value: String) { myDeployedBranch.text = value}

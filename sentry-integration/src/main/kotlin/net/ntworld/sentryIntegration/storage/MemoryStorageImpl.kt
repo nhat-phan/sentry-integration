@@ -80,6 +80,8 @@ internal class MemoryStorageImpl(
             issueId = issueId,
             exceptionId = exception.id,
             path =  stacktrace.path,
+            module = stacktrace.module,
+            function = stacktrace.function,
             visibleLine =  stacktrace.line,
             index = index,
             total = exception.stacktrace.count(),

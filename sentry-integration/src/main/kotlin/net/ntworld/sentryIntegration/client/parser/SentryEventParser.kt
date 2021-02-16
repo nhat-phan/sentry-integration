@@ -83,7 +83,14 @@ class SentryEventParser(private val linkedProject: LinkedProject) {
     private fun transformStacktraceFrameElement(element: JsonElement): SentryEventExceptionStacktrace {
         val absPathElement = element.jsonObject["absPath"]
         val lineNoElement = element.jsonObject["lineNo"]
+        val moduleElement = element.jsonObject["module"]
+        val functionElement = element.jsonObject["function"]
         val absolutePath = if (null === absPathElement) "" else absPathElement.primitive.content
+        val module = if (null === moduleElement) "" else moduleElement.primitive.content
+        val function = if (null === functionElement) "" else functionElement.primitive.content
+        val lineNumber = if (null === lineNoElement) 0 else {
+            if (lineNoElement.isNull) 0 else lineNoElement.primitive.int
+        }
 
         val context = mutableListOf<SentryEventExceptionStacktraceContext>()
         val contextElement = element.jsonObject["context"]
@@ -111,7 +118,9 @@ class SentryEventParser(private val linkedProject: LinkedProject) {
 
         return SentryEventExceptionStacktrace(
             absolutePath = LocalPath.create(absolutePath, linkedProject.sentryRootPath),
-            lineNumber = if (null === lineNoElement) 0 else lineNoElement.primitive.int,
+            module = module,
+            function = function,
+            lineNumber = lineNumber,
             context = context,
             variables = variables
         )

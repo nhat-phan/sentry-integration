@@ -9,6 +9,10 @@ internal data class StacktraceFrameData(
 
     override val reportedPath: String,
 
+    override val module: String,
+
+    override val function: String,
+
     override val line: Int,
 
     override val contexts: List<Storage.Context>,

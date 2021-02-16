@@ -21,6 +21,8 @@ data class SentryEventException(
                 StacktraceFrameData(
                     path = it.absolutePath.value,
                     reportedPath = it.absolutePath.originValue,
+                    module = it.module,
+                    function = it.function,
                     line = it.lineNumber,
                     contexts = it.context.map {
                         ContextData(line = it.lineNumber, content = it.content)

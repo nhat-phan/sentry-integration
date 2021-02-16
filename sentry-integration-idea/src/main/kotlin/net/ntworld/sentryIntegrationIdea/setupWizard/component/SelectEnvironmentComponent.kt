@@ -56,7 +56,8 @@ class SelectEnvironmentComponent(
                 name,
                 project,
                 myEnvironmentFormComponent.getDeployedBranch(),
-                myEnvironmentFormComponent.getDeployedRootPath()
+                myEnvironmentFormComponent.getDeployedRootPath(),
+                myEnvironmentFormComponent.getUseCompiledLanguage()
             )
         }
     }

@@ -73,7 +73,11 @@ class ProjectDetailPanel(private val projectServiceProvider: ProjectServiceProvi
 //            " - Issues will not be displayed in editor"
         mySentryProject!!.text = project.sentryOrganizationSlug + " / " + project.sentryProjectSlug
         myDeployedBranch!!.text = project.deployedBranch
-        mySentryRootPath!!.text = project.sentryRootPath
+        mySentryRootPath!!.text = if (project.useCompiledLanguage) {
+            "compiled programming language" + if (project.sentryRootPath.isNotEmpty()) {
+                " - " + project.sentryRootPath
+            } else ""
+        } else project.sentryRootPath
 
         myConnection!!.isVisible = true
         myEnvironment!!.isVisible = true

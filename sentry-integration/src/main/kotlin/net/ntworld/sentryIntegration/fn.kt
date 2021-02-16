@@ -2,7 +2,7 @@ package net.ntworld.sentryIntegration
 
 import net.ntworld.sentryIntegration.entity.ErrorLevel
 
-const val ENABLE_DEBUG_LOG = false
+const val ENABLE_DEBUG_LOG = true
 
 fun String.toCrossPlatformsPath(): String {
     return if (this.contains('\\')) this.replace('\\', '/') else this

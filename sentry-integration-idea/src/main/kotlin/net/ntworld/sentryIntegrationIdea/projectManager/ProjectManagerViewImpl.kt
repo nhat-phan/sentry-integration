@@ -67,6 +67,7 @@ class ProjectManagerViewImpl(
         form.setEnvironmentName(project.environmentName)
         form.setDeployedBranch(project.deployedBranch)
         form.setDeployedRootPath(project.sentryRootPath)
+        form.setUseCompiledLanguage(project.useCompiledLanguage)
         form.setSelectedProject(project.sentryProjectId)
 
         val builder = DialogBuilder()
@@ -87,6 +88,7 @@ class ProjectManagerViewImpl(
                 environmentName = form.getEnvironmentName(),
                 sentryProject = selectedProject,
                 environmentRootPath = form.getDeployedRootPath(),
+                useCompiledLanguage = form.getUseCompiledLanguage(),
                 deployedBranch = form.getDeployedBranch()
             )
             dispatcher.multicaster.onUpdateEnvironmentRequest(project, data)

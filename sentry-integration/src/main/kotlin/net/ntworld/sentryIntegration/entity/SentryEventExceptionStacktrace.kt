@@ -10,6 +10,8 @@ import net.ntworld.sentryIntegration.storage.data.ContextData
 @Serializable
 data class SentryEventExceptionStacktrace(
     val absolutePath: LocalPath,
+    val module: String,
+    val function: String,
     val lineNumber: Int,
     val context: List<SentryEventExceptionStacktraceContext>,
     var variables: List<SentryEventExceptionStacktraceVariable>
@@ -52,6 +54,8 @@ data class SentryEventExceptionStacktrace(
             issueId = issue.id,
             exceptionId = exception.id,
             path = absolutePath.value,
+            module = module,
+            function = function,
             visibleLine =  lineNumber,
             index = index,
             total = totalCount,

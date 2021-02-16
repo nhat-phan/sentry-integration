@@ -95,6 +95,7 @@ object LinkedProjectUtil {
         val sentryProject: SentryProject,
         val environmentName: String,
         val environmentRootPath: String,
+        val useCompiledLanguage: Boolean,
         val deployedBranch: String
     )
 
@@ -104,6 +105,7 @@ object LinkedProjectUtil {
         val sentryProject: SentryProject,
         val environmentName: String,
         val environmentRootPath: String,
+        val useCompiledLanguage: Boolean,
         val deployedBranch: String
     )
 }

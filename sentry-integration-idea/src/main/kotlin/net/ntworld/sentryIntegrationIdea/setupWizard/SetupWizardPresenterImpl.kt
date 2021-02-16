@@ -74,7 +74,8 @@ class SetupWizardPresenterImpl(
         environmentName: String,
         sentryProject: SentryProject,
         deployedBranch: String,
-        deployedRootPath: String
+        deployedRootPath: String,
+        useCompiledLanguage: Boolean
     ) {
         val connection = mySelectedConnection
         if (null === connection) {
@@ -95,6 +96,7 @@ class SetupWizardPresenterImpl(
             sentryProject = sentryProject,
             environmentName = environmentName,
             environmentRootPath = deployedRootPath,
+            useCompiledLanguage = useCompiledLanguage,
             deployedBranch = deployedBranch
         )
         val (isValid, message) = LinkedProjectUtil.validateBeforeCreating(projectServiceProvider.linkedProjects, data)
@@ -112,6 +114,7 @@ class SetupWizardPresenterImpl(
             sentryRootPath = data.environmentRootPath,
             localRootPath = data.localRootPath,
             deployedBranch = data.deployedBranch,
+            useCompiledLanguage = useCompiledLanguage,
             enableWorker = false
         )
         projectServiceProvider.project.messageBus.syncPublisher(MainToolWindowManager.TOPIC).requestCloseSetupWizard()

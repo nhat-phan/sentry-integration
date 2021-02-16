@@ -20,6 +20,7 @@ data class LinkedProject(
     val cacheDirectory: String,
     val workspaceDirectory: String?,
     val enableWorker: Boolean,
+    val useCompiledLanguage: Boolean,
     val connectionScope: Scope = Scope(null),
     val state: State = State.INITIALIZE
 ) {
@@ -64,7 +65,8 @@ data class LinkedProject(
             localRootPath = "",
             cacheDirectory = "",
             workspaceDirectory = "",
-            enableWorker = false
+            enableWorker = false,
+            useCompiledLanguage = false
         )
     }
 }

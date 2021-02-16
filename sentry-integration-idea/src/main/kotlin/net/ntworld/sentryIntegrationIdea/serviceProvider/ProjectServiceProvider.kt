@@ -39,6 +39,7 @@ interface ProjectServiceProvider {
         sentryRootPath: String,
         localRootPath: String,
         deployedBranch: String,
+        useCompiledLanguage: Boolean,
         enableWorker: Boolean
     )
 

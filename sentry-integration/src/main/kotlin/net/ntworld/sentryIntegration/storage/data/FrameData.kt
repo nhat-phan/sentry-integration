@@ -8,6 +8,8 @@ data class FrameData(
     override val issueId: String,
     override val exceptionId: String,
     override val path: String,
+    override val module: String,
+    override val function: String,
     override val visibleLine: Int,
     override val index: Int,
     override val total: Int,

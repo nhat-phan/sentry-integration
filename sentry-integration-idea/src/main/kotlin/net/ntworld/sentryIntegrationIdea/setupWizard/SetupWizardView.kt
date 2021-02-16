@@ -31,6 +31,12 @@ interface SetupWizardView: View<SetupWizardView.ActionListener>, Component, Disp
 
         fun onProjectSelected(localRootPath: String, name: String)
 
-        fun onEnvironmentFilled(environmentName: String, sentryProject: SentryProject, deployedBranch: String, deployedRootPath: String)
+        fun onEnvironmentFilled(
+            environmentName: String,
+            sentryProject: SentryProject,
+            deployedBranch: String,
+            deployedRootPath: String,
+            useCompiledLanguage: Boolean
+        )
     }
 }

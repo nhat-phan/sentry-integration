@@ -75,6 +75,7 @@ open class ProjectServiceProviderImpl(
         sentryRootPath: String,
         localRootPath: String,
         deployedBranch: String,
+        useCompiledLanguage: Boolean,
         enableWorker: Boolean
     ) {
         val project = LinkedProject(
@@ -93,6 +94,7 @@ open class ProjectServiceProviderImpl(
             deployedBranch = deployedBranch,
             cacheDirectory = pluginConfiguration.cacheDirectory,
             workspaceDirectory = project.basePath,
+            useCompiledLanguage = useCompiledLanguage,
             enableWorker = false // for now it's always false
         )
         myLinkedProjects[project.id] = project
@@ -178,6 +180,7 @@ open class ProjectServiceProviderImpl(
             item.setAttribute("sentryOrganizationSlug", it.sentryOrganizationSlug)
             item.setAttribute("sentryProjectSlug", it.sentryProjectSlug)
             item.setAttribute("sentryRootPath", it.sentryRootPath)
+            item.setAttribute("useCompiledLanguage", if (it.useCompiledLanguage) "1" else "0")
             // for now it's always false
             item.setAttribute("enableWorker", "0")
             // item.setAttribute("enableWorker", if (it.enableWorker) "1" else "0" )
@@ -229,6 +232,7 @@ open class ProjectServiceProviderImpl(
                     sentryRootPath = item.getAttribute("sentryRootPath").value,
                     localRootPath = item.getAttribute("localRootPath").value,
                     deployedBranch = item.getAttribute("deployedBranch").value,
+                    useCompiledLanguage = readBooleanAttribute(item, "useCompiledLanguage", false),
                     // for now it's always false
                     enableWorker = false,
                     // enableWorker = item.getAttribute("enableWorker").value == "1",

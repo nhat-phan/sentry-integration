@@ -50,6 +50,10 @@ interface Storage {
 
         val reportedPath: String
 
+        val module: String
+
+        val function: String
+
         val line: Int
 
         val contexts: List<Context>
@@ -106,6 +110,10 @@ interface Storage {
         val exceptionId: String
 
         val path: String
+
+        val module: String
+
+        val function: String
 
         val visibleLine: Int
 

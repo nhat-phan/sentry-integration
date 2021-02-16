@@ -101,6 +101,7 @@ class ProjectManagerPresenterImpl(
             sentryOrganizationSlug = data.sentryProject.organization.slug,
             deployedBranch = data.deployedBranch,
             sentryRootPath = data.environmentRootPath,
+            useCompiledLanguage = data.useCompiledLanguage,
             state = LinkedProject.State.INITIALIZE
         ))
         view.showEmptyState()
