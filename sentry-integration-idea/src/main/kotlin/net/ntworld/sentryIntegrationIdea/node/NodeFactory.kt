@@ -37,8 +37,12 @@ object NodeFactory {
         return ProjectsTreeRootNodeBuilder(projects, connections)
     }
 
-    fun makeIssuesTreeRootNodeBuilder(data: IssuesTreeData, pluginConfiguration: PluginConfiguration): RootNodeBuilder {
-        return IssuesTreeRootNodeBuilder(data, pluginConfiguration)
+    fun makeIssuesTreeRootNodeBuilder(
+        data: IssuesTreeData,
+        linkedProject: LinkedProject,
+        pluginConfiguration: PluginConfiguration
+    ): RootNodeBuilder {
+        return IssuesTreeRootNodeBuilder(data, linkedProject, pluginConfiguration)
     }
 
 }

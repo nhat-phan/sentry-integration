@@ -157,7 +157,7 @@ class QueryTabPresenterImpl(
         stacktrace: SentryEventExceptionStacktrace,
         index: Int
     ) {
-        projectServiceProvider.editorManager.open(
+        projectServiceProvider.makeEditorManager(model.linkedProject).open(
             FrameDataBuilder.build(
                 model.linkedProject,
                 issue,

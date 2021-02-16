@@ -21,11 +21,11 @@ interface ProjectServiceProvider {
 
     val pluginConfiguration: PluginConfiguration
 
-    val editorManager: EditorManager
-
-    val repositoryManager: RepositoryManager
-
     val configurableDisplayName: String
+
+    fun makeEditorManager(linkedProject: LinkedProject): EditorManager
+
+    fun makeRepositoryManager(linkedProject: LinkedProject): RepositoryManager
 
     fun applyPluginConfiguration(config: PluginConfiguration)
 

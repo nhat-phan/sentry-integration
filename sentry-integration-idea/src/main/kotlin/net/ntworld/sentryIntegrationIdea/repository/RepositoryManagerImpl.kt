@@ -12,7 +12,9 @@ import com.intellij.vcs.log.history.FileHistoryUtil
 import com.intellij.vcs.log.history.VcsLogFileRevision
 import com.intellij.vcs.log.impl.VcsProjectLog
 import com.intellij.vcs.log.util.VcsLogUtil
+import net.ntworld.sentryIntegration.Storage
 import net.ntworld.sentryIntegration.entity.LinkedProject
+import net.ntworld.sentryIntegration.entity.SentryEventExceptionStacktrace
 import net.ntworld.sentryIntegration.toCrossPlatformsPath
 import java.nio.file.Paths
 
@@ -21,8 +23,20 @@ class RepositoryManagerImpl(private val project: Project) : RepositoryManager {
     private val myRootCheckers = mutableMapOf<String, VcsRootChecker>()
     private val myCheckSourceFiles = mutableMapOf<String, Boolean>()
 
-    override fun isSourceFile(linkedProject: LinkedProject, path: String): Boolean {
-        val key = linkedProject.id + ":" + path
+    override fun isSourceFile(linkedProject: LinkedProject, stacktrace: SentryEventExceptionStacktrace): Boolean {
+        val filePath = findLocalFilePath(linkedProject.localRootPath, stacktrace.absolutePath.value)
+
+        return checkSourceFileByFilePath(linkedProject, filePath)
+    }
+
+    override fun isSourceFile(linkedProject: LinkedProject, frame: Storage.Frame): Boolean {
+        val filePath = findLocalFilePath(linkedProject.localRootPath, frame.path)
+
+        return checkSourceFileByFilePath(linkedProject, filePath)
+    }
+
+    internal fun checkSourceFileByFilePath(linkedProject: LinkedProject, filePath: FilePath): Boolean {
+        val key = linkedProject.id + ":" + filePath
         if (myCheckSourceFiles.containsKey(key)) {
             return myCheckSourceFiles[key]!!
         }
@@ -32,7 +46,6 @@ class RepositoryManagerImpl(private val project: Project) : RepositoryManager {
             return false
         }
 
-        val filePath = findLocalFilePath(linkedProject.localRootPath, path)
         val virtualFile = filePath.virtualFile
         if (null === virtualFile) {
             return false
@@ -43,11 +56,17 @@ class RepositoryManagerImpl(private val project: Project) : RepositoryManager {
         return created
     }
 
-    override fun findLocalFilePath(linkedProject: LinkedProject, path: String): FilePath {
-        return findLocalFilePath(linkedProject.localRootPath, path)
+    override fun findLocalFilePath(linkedProject: LinkedProject, frame: Storage.Frame): FilePath {
+        return findLocalFilePath(linkedProject.localRootPath, frame.path)
     }
 
-    override fun findVcsVirtualFile(linkedProject: LinkedProject, path: String): VirtualFile? {
+    override fun findVcsVirtualFile(linkedProject: LinkedProject, frame: Storage.Frame): VirtualFile? {
+        val filePath = findLocalFilePath(linkedProject.localRootPath, frame.path)
+
+        return findVcsVirtualFileByFilePath(linkedProject, filePath)
+    }
+
+    internal fun findVcsVirtualFileByFilePath(linkedProject: LinkedProject, filePath: FilePath): VirtualFile? {
         val vcsRepositoryManager = findVcsRepositoryManager(linkedProject)
 
         if (null === vcsRepositoryManager) return null
@@ -66,7 +85,7 @@ class RepositoryManagerImpl(private val project: Project) : RepositoryManager {
         if (null === branch) return null
 
         val vcsFullCommitDetails = VcsLogUtil.getDetails(vcsLogData, vcsRepositoryManager.root, branch.commitHash)
-        val filePath = findLocalFilePath(linkedProject.localRootPath, path)
+
         return FileHistoryUtil.createVcsVirtualFile(VcsLogFileRevision(
             vcsFullCommitDetails,
             vcsLogDiffHandler.createContentRevision(

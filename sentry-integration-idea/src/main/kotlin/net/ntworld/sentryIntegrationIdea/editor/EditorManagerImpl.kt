@@ -77,17 +77,18 @@ class EditorManagerImpl(
         }
 
         override fun run() {
-            val filePath = projectServiceProvider.repositoryManager.findLocalFilePath(frame.linkedProject, frame.path)
+            val repositoryManager = projectServiceProvider.makeRepositoryManager(frame.linkedProject)
+            val filePath = repositoryManager.findLocalFilePath(frame.linkedProject, frame)
             if (isFileContentMatchedWithFrameContext(filePath.virtualFile, frame)) {
                 return invoker.invoke(frame, filePath.virtualFile!!)
             }
 
-            val isSourceFile = projectServiceProvider.repositoryManager.isSourceFile(frame.linkedProject, frame.path)
+            val isSourceFile = repositoryManager.isSourceFile(frame.linkedProject, frame)
             if (!isSourceFile) {
                 return
             }
 
-            val vcsVirtualFile = projectServiceProvider.repositoryManager.findVcsVirtualFile(frame.linkedProject, frame.path)
+            val vcsVirtualFile = repositoryManager.findVcsVirtualFile(frame.linkedProject, frame)
             if (null !== vcsVirtualFile) {
                 return invoker.invoke(frame, vcsVirtualFile)
             }

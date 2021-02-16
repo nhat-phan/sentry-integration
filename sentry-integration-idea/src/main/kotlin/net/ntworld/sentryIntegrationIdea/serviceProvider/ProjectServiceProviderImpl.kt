@@ -6,6 +6,7 @@ import com.intellij.openapi.components.ServiceManager
 import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
 import com.intellij.openapi.project.Project
+import net.ntworld.sentryIntegration.InstanceCache
 import net.ntworld.sentryIntegration.debug
 import net.ntworld.sentryIntegration.entity.Connection
 import net.ntworld.sentryIntegration.entity.LinkedProject
@@ -13,21 +14,25 @@ import net.ntworld.sentryIntegration.entity.LocalRepository
 import net.ntworld.sentryIntegration.entity.PluginConfiguration
 import net.ntworld.sentryIntegration.entity.SentryProject
 import net.ntworld.sentryIntegrationIdea.editor.EditorManager
+import net.ntworld.sentryIntegrationIdea.editor.EditorManagerForCompiledLanguageImpl
 import net.ntworld.sentryIntegrationIdea.editor.EditorManagerImpl
 import net.ntworld.sentryIntegrationIdea.license.LicenseChecker
 import net.ntworld.sentryIntegrationIdea.notifier.LinkedProjectNotifier
 import net.ntworld.sentryIntegrationIdea.repository.RepositoryManager
+import net.ntworld.sentryIntegrationIdea.repository.CompiledLanguageWrapper
 import net.ntworld.sentryIntegrationIdea.repository.RepositoryManagerImpl
 import org.jdom.Element
 import java.util.*
 
 @State(name = "SentryIntegrationProjectLevel", storages = [(Storage("sentry-integration.xml"))])
 open class ProjectServiceProviderImpl(
-    override val project: Project
+    final override val project: Project
 ) : ProjectServiceProvider, PersistentStateComponent<Element> {
     private val myLinkedProjects = mutableMapOf<String, LinkedProject>()
     private val myOpeningProjectIds = mutableSetOf<String>()
     private var myPluginConfiguration = PluginConfiguration.Default
+    private val myEditorManagers = InstanceCache<String, EditorManager>()
+    private val myRepositoryManagers = InstanceCache<String, RepositoryManager>()
 
     override val applicationServiceProvider: ApplicationServiceProvider
         get() {
@@ -42,11 +47,27 @@ open class ProjectServiceProviderImpl(
     override val pluginConfiguration: PluginConfiguration
         get() = myPluginConfiguration
 
-    override val editorManager: EditorManager = EditorManagerImpl(this)
-
-    override val repositoryManager: RepositoryManager = RepositoryManagerImpl(project)
-
     override val configurableDisplayName: String = "Sentry Integration"
+
+    override fun makeEditorManager(linkedProject: LinkedProject): EditorManager {
+        return myEditorManagers.get(linkedProject.id) {
+            if (linkedProject.useCompiledLanguage) {
+                EditorManagerForCompiledLanguageImpl(this)
+            } else {
+                EditorManagerImpl(this)
+            }
+        }
+    }
+
+    override fun makeRepositoryManager(linkedProject: LinkedProject): RepositoryManager {
+        return myRepositoryManagers.get(linkedProject.id) {
+            if (linkedProject.useCompiledLanguage) {
+                CompiledLanguageWrapper(project, RepositoryManagerImpl(project))
+            } else {
+                RepositoryManagerImpl(project)
+            }
+        }
+    }
 
     override fun applyPluginConfiguration(config: PluginConfiguration) {
         myPluginConfiguration = config
@@ -107,6 +128,8 @@ open class ProjectServiceProviderImpl(
         for (linkedProject in projects) {
             if (myLinkedProjects.containsKey(linkedProject.id)) {
                 myLinkedProjects[linkedProject.id] = linkedProject
+                myEditorManagers.clear(linkedProject.id)
+                myRepositoryManagers.clear(linkedProject.id)
                 changed = true
             }
         }
@@ -120,6 +143,8 @@ open class ProjectServiceProviderImpl(
         if (myLinkedProjects.containsKey(project.id)) {
             myLinkedProjects[project.id] = project
             this.project.messageBus.syncPublisher(LinkedProjectNotifier.TOPIC).linkedProjectsChanged(linkedProjects)
+            myEditorManagers.clear(project.id)
+            myRepositoryManagers.clear(project.id)
         }
     }
 
@@ -128,6 +153,8 @@ open class ProjectServiceProviderImpl(
         for (linkedProject in projects) {
             if (myLinkedProjects.containsKey(linkedProject.id)) {
                 myLinkedProjects.remove(linkedProject.id)
+                myEditorManagers.clear(linkedProject.id)
+                myRepositoryManagers.clear(linkedProject.id)
                 changed = true
             }
         }

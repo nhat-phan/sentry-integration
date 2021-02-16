@@ -1,5 +1,6 @@
 package net.ntworld.sentryIntegrationIdea.node.issue
 
+import net.ntworld.sentryIntegration.entity.LinkedProject
 import net.ntworld.sentryIntegration.entity.PluginConfiguration
 import net.ntworld.sentryIntegrationIdea.node.RootNode
 import net.ntworld.sentryIntegrationIdea.node.RootNodeBuilder
@@ -7,6 +8,7 @@ import net.ntworld.sentryIntegrationIdea.util.EventTagsUtil
 
 class IssuesTreeRootNodeBuilder(
     private val data: IssuesTreeData,
+    private val linkedProject: LinkedProject,
     private val pluginConfiguration: PluginConfiguration
 ): RootNodeBuilder {
 
@@ -40,15 +42,26 @@ class IssuesTreeRootNodeBuilder(
 
                     val totalCount = exception.stacktrace.count()
                     for (j in exception.stacktrace.lastIndex downTo 0) {
-                        val stacktraceNode = StacktraceFrameNode(
-                            issue = issue,
-                            exception = exception,
-                            stacktrace = exception.stacktrace[j],
-                            index = j,
-                            totalCount = totalCount,
-                            exceptionIndex = i,
-                            pluginConfiguration = pluginConfiguration
-                        )
+                        val stacktraceNode: StacktraceFrameNode = if (linkedProject.useCompiledLanguage) {
+                            StacktraceFrameCompiledLanguageNode(
+                                issue = issue,
+                                exception = exception,
+                                stacktrace = exception.stacktrace[j],
+                                index = j,
+                                totalCount = totalCount,
+                                exceptionIndex = i
+                            )
+                        } else {
+                            StacktraceFrameWithSourceCodeNode(
+                                issue = issue,
+                                exception = exception,
+                                stacktrace = exception.stacktrace[j],
+                                index = j,
+                                totalCount = totalCount,
+                                exceptionIndex = i,
+                                pluginConfiguration = pluginConfiguration
+                            )
+                        }
                         exceptionNode.add(stacktraceNode)
                     }
 

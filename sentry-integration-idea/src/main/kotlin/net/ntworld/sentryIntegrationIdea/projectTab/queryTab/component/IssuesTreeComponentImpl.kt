@@ -16,6 +16,7 @@ import net.ntworld.sentryIntegrationIdea.node.issue.IssueNode
 import net.ntworld.sentryIntegrationIdea.node.issue.IssuesTreeData
 import net.ntworld.sentryIntegrationIdea.node.issue.SeenTimeNode
 import net.ntworld.sentryIntegrationIdea.node.issue.StacktraceFrameNode
+import net.ntworld.sentryIntegrationIdea.node.issue.StacktraceFrameWithSourceCodeNode
 import net.ntworld.sentryIntegrationIdea.node.issue.TagsNode
 import net.ntworld.sentryIntegrationIdea.serviceProvider.ProjectServiceProvider
 import javax.swing.JComponent
@@ -99,7 +100,7 @@ class IssuesTreeComponentImpl(
 
     override fun setData(data: IssuesTreeData) {
         myIsTreeRendering = true
-        val builder = NodeFactory.makeIssuesTreeRootNodeBuilder(data, projectServiceProvider.pluginConfiguration)
+        val builder = NodeFactory.makeIssuesTreeRootNodeBuilder(data, linkedProject, projectServiceProvider.pluginConfiguration)
         val root = builder.build()
         NodeFactory.makeNodeSyncManager(projectServiceProvider, linkedProject).sync(root, mySyncedTree)
         // handleOnTreeNodeSelectedEvent(myTree.selectionPaths)

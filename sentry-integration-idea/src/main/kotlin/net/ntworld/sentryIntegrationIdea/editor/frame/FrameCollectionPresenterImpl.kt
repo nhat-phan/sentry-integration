@@ -64,7 +64,7 @@ class FrameCollectionPresenterImpl(
         val storage = StorageManager.make(frame.linkedProject)
         val firstFrame = storage.findFirstFrame(frame)
         if (null !== firstFrame) {
-            projectServiceProvider.editorManager.open(firstFrame)
+            projectServiceProvider.makeEditorManager(frame.linkedProject).open(firstFrame)
         }
     }
 
@@ -92,7 +92,7 @@ class FrameCollectionPresenterImpl(
         val storage = StorageManager.make(frame.linkedProject)
         val nextFrame = storage.findFrameByLink(link, frame.source)
         if (null !== nextFrame) {
-            projectServiceProvider.editorManager.open(nextFrame)
+            projectServiceProvider.makeEditorManager(frame.linkedProject).open(nextFrame)
         }
     }
 }

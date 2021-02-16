@@ -1,5 +1,6 @@
 package net.ntworld.sentryIntegrationIdea.task
 
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.openapi.progress.ProgressManager
 import com.intellij.openapi.progress.Task
@@ -31,7 +32,7 @@ class FetchIssueDetailTask(
         listener.onIssueDetailReceived(issue, detail)
 
         val hashes = api.getIssueHashes(issueId = issue.id)
-        val repositoryManager = projectServiceProvider.repositoryManager
+        val repositoryManager = projectServiceProvider.makeRepositoryManager(linkedProject)
         val storage = StorageManager.make(linkedProject)
 
         for (i in 0..hashes.lastIndex) {
@@ -40,7 +41,9 @@ class FetchIssueDetailTask(
                 // Calling isSourceFile will cached the result
                 // We need to call here because it's expensive and this one run in background thread
                 for (stacktrace in exception.stacktrace) {
-                    repositoryManager.isSourceFile(linkedProject, stacktrace.absolutePath.value)
+                    ApplicationManager.getApplication().runReadAction {
+                        repositoryManager.isSourceFile(linkedProject, stacktrace)
+                    }
                 }
             }
 
