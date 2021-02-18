@@ -14,13 +14,13 @@ import net.ntworld.sentryIntegration.entity.LocalRepository
 import net.ntworld.sentryIntegration.entity.PluginConfiguration
 import net.ntworld.sentryIntegration.entity.SentryProject
 import net.ntworld.sentryIntegrationIdea.editor.EditorManager
-import net.ntworld.sentryIntegrationIdea.editor.EditorManagerForCompiledLanguageImpl
 import net.ntworld.sentryIntegrationIdea.editor.EditorManagerImpl
+import net.ntworld.sentryIntegrationIdea.editor.CompiledLanguageWrapper as EditorCompiledLanguageWrapper
 import net.ntworld.sentryIntegrationIdea.license.LicenseChecker
 import net.ntworld.sentryIntegrationIdea.notifier.LinkedProjectNotifier
 import net.ntworld.sentryIntegrationIdea.repository.RepositoryManager
-import net.ntworld.sentryIntegrationIdea.repository.CompiledLanguageWrapper
 import net.ntworld.sentryIntegrationIdea.repository.RepositoryManagerImpl
+import net.ntworld.sentryIntegrationIdea.repository.CompiledLanguageWrapper as RepositoryCompiledLanguageWrapper
 import org.jdom.Element
 import java.util.*
 
@@ -52,7 +52,7 @@ open class ProjectServiceProviderImpl(
     override fun makeEditorManager(linkedProject: LinkedProject): EditorManager {
         return myEditorManagers.get(linkedProject.id) {
             if (linkedProject.useCompiledLanguage) {
-                EditorManagerForCompiledLanguageImpl(this)
+                EditorCompiledLanguageWrapper(this, EditorManagerImpl(this))
             } else {
                 EditorManagerImpl(this)
             }
@@ -62,7 +62,7 @@ open class ProjectServiceProviderImpl(
     override fun makeRepositoryManager(linkedProject: LinkedProject): RepositoryManager {
         return myRepositoryManagers.get(linkedProject.id) {
             if (linkedProject.useCompiledLanguage) {
-                CompiledLanguageWrapper(project, RepositoryManagerImpl(project))
+                RepositoryCompiledLanguageWrapper(project, RepositoryManagerImpl(project))
             } else {
                 RepositoryManagerImpl(project)
             }

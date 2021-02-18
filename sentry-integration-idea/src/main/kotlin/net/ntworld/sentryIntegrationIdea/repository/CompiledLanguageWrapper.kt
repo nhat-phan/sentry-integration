@@ -34,9 +34,7 @@ class CompiledLanguageWrapper(
         }
 
         // We have to introduce cached
-        println("Module: $module")
         val resolvedPath = resolvePhysicalPath(linkedProject, path, module)
-        println("ResolvedPath: $resolvedPath")
 
         if (resolvedPath.isEmpty()) {
             return false
@@ -53,14 +51,7 @@ class CompiledLanguageWrapper(
 
         val key = linkedProject.id + ":" + path + "/" + module
         return myPhysicalPaths.get(key) {
-            val psiFiles = FilenameIndex.getFilesByName(project, path, GlobalSearchScope.allScope(project))
-
-            if (psiFiles.isEmpty()) {
-                return@get ""
-            }
-
-            val psiFile = matchPsiFilesByModule(psiFiles, module)
-            val virtualFile = psiFile.virtualFile
+            val virtualFile = resolveVirtualFile(linkedProject, path, module)
             if (null === virtualFile) {
                 ""
             } else {
@@ -69,15 +60,32 @@ class CompiledLanguageWrapper(
         }
     }
 
-    private fun matchPsiFilesByModule(psiFiles: Array<PsiFile>, module: String): PsiFile {
+    private fun resolveVirtualFile(linkedProject: LinkedProject, path: String, module: String): VirtualFile? {
+        val psiFiles = FilenameIndex.getFilesByName(project, path, GlobalSearchScope.allScope(project))
+
+        if (psiFiles.isEmpty()) {
+            return null
+        }
+
+        return matchPsiFilesByModule(linkedProject, psiFiles, module).virtualFile
+    }
+
+
+    private fun matchPsiFilesByModule(linkedProject: LinkedProject, psiFiles: Array<PsiFile>, module: String): PsiFile {
         if (psiFiles.count() == 1) {
             return psiFiles.first()
         }
 
         for (psiFile in psiFiles) {
-            // psiFile.e
+            if (PsiFileMatcher.isMatched(linkedProject, psiFile, module)) {
+                return psiFile
+            }
         }
         return psiFiles.first()
+    }
+
+    override fun findLocalVirtualFile(linkedProject: LinkedProject, frame: Storage.Frame): VirtualFile? {
+        return resolveVirtualFile(linkedProject, frame.path, frame.module)
     }
 
     override fun findLocalFilePath(linkedProject: LinkedProject, frame: Storage.Frame): FilePath {

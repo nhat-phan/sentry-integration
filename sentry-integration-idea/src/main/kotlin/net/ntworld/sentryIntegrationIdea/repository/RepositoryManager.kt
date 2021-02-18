@@ -12,6 +12,8 @@ interface RepositoryManager {
 
     fun isSourceFile(linkedProject: LinkedProject, frame: Storage.Frame): Boolean
 
+    fun findLocalVirtualFile(linkedProject: LinkedProject, frame: Storage.Frame): VirtualFile?
+
     fun findLocalFilePath(linkedProject: LinkedProject, frame: Storage.Frame): FilePath
 
     fun findVcsVirtualFile(linkedProject: LinkedProject, frame: Storage.Frame): VirtualFile?

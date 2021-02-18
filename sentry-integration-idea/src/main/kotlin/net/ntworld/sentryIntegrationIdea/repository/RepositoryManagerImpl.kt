@@ -60,6 +60,10 @@ class RepositoryManagerImpl(private val project: Project) : RepositoryManager {
         return findLocalFilePath(linkedProject.localRootPath, frame.path)
     }
 
+    override fun findLocalVirtualFile(linkedProject: LinkedProject, frame: Storage.Frame): VirtualFile? {
+        return null
+    }
+
     override fun findVcsVirtualFile(linkedProject: LinkedProject, frame: Storage.Frame): VirtualFile? {
         val filePath = findLocalFilePath(linkedProject.localRootPath, frame.path)
 

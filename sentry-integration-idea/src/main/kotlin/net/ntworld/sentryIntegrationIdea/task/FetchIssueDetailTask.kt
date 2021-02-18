@@ -37,11 +37,11 @@ class FetchIssueDetailTask(
 
         for (i in 0..hashes.lastIndex) {
             val exceptions = hashes[i].latestEventDetail.exceptions
-            for (exception in exceptions) {
-                // Calling isSourceFile will cached the result
-                // We need to call here because it's expensive and this one run in background thread
-                for (stacktrace in exception.stacktrace) {
-                    ApplicationManager.getApplication().runReadAction {
+            ApplicationManager.getApplication().runReadAction {
+                for (exception in exceptions) {
+                    // Calling isSourceFile will cached the result
+                    // We need to call here because it's expensive and this one run in background thread
+                    for (stacktrace in exception.stacktrace) {
                         repositoryManager.isSourceFile(linkedProject, stacktrace)
                     }
                 }

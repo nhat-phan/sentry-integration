@@ -24,7 +24,7 @@ class EditorManagerImpl(
         }
     }
 
-    private fun handleFindVirtualFile(frame: Storage.Frame, virtualFile: VirtualFile) {
+    internal fun handleFindVirtualFile(frame: Storage.Frame, virtualFile: VirtualFile) {
         ApplicationManager.getApplication().invokeLater {
             val editors = myFileEditorManagerEx.openFile(virtualFile, false)
             for (fileEditor in editors) {
