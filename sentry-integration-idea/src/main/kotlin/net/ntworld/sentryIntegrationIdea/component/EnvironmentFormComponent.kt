@@ -47,7 +47,7 @@ class EnvironmentFormComponent(displayProjectName: Boolean = false): Component {
         component.add(makeLabel("Deployed Branch"))
         component.add(myDeployedBranch)
 
-        myUseCompiledLanguageCheckbox.text = "The project is compiled programming language (such as java, kotlin)"
+        myUseCompiledLanguageCheckbox.text = "The project is using compiled programming language (such as java, kotlin)"
         component.add(makeEmptyComponent())
         component.add(myUseCompiledLanguageCheckbox)
 
