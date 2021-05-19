@@ -27,6 +27,17 @@ data class LocalPath(
                     sentryRootPath = sentryRootPath
                 )
             }
+            
+            if (sentryRootPath.startsWith("^")) {
+                pathRegex = sentryRootPath.toRegex()
+                if (path.contains(pathRegex)) {
+                    return LocalPath(
+                        originValue = input,
+                        value = pathRegex.replace(path, ""),
+                        sentryRootPath = sentryRootPath
+                    )
+                }
+            }
 
             return LocalPath(
                 originValue = input,
